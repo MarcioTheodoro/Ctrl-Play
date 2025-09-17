@@ -56,3 +56,6 @@ app.get('/', (req, res) => {
 app.get('/read', (req, res) => { //criamos a rota
     res.status(200).json(movies); //o retorno é a array de filmes
 });
+/*app.post('adicionar', (req, res) => {
+    { id: 1; title: "Interestelar"; genre: "Ficção Científica/Aventura", year: 2014, runtime: "169 minutes" }
+})*/

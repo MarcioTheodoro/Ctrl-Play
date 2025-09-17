@@ -1,16 +1,11 @@
-let movies = [
-    { id: 1, title: "Interestelar", genre: "Ficção Científica/Aventura", year: 2014 },
-    { id: 2, title: "Matrix", genre: "Ficcção Científica", year: 1999 }
-];
+let movies = [ // lista de filmes da aula passada
+    { id: 1, title: "O Senhor dos Anéis", genre: "Fantasia", year: 2001 },
+    { id: 2, title: "Matrix", genre: "Ficção Científica", year: 1999 }
+]; // Sua lista de filmes
 
-movies.push({ id: 3, title: "Bolt-Supercão", genre: "Animação", year: 2008 });
+const express = require('express'); //importando o express
+const app = express(); //criando uma aplicação Express
+app.use(express.json()); //permite trabalhar com dados JSON
 
-console.log(movies);
-
-let movieToUpdate = movies.find(movie => movie.id === 1);
-if (movieToUpdate) {
-    movieToUpdate.genre = "Ficção Científica";
-    console.log(`Filme atualizado meu rei!: ${movieToUpdate.title}, Gênero: ${movieToUpdate.genre}`);
-}
-
-console.log(movies);
+// Inicia o servidor na porta 3000
+app.listen(3000, () => console.log('Servidor rodando na porta 3000'));
