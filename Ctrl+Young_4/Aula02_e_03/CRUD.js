@@ -8,4 +8,10 @@ const app = express(); //criando uma aplicação Express
 app.use(express.json()); //permite trabalhar com dados JSON
 
 // Inicia o servidor na porta 3000
-app.listen(3000, () => console.log('Servidor rodando na porta 3000'));
+app.listen(4000, () => console.log('Servidor rodando na porta 4000'));
+
+console.log("");
+
+app.get('/read', (req, res) => {
+    res.status(200).json(movies); // Retorna o array de filmes como resposta
+});
