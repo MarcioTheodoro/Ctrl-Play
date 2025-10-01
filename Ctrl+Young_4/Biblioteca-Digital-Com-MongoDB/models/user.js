@@ -3,7 +3,7 @@ const userSchema = new mongoose.Schema({
     name: { type: String },
     email: { type: String },
     phone: { type: String },
-    age: { type: Date },
+    age: { type: String },
     createdAt: { type: Date, default: Date.now }
 });
 
