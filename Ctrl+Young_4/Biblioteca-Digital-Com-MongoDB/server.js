@@ -32,7 +32,7 @@ app.get("/api/books", async (req, res) => {
 app.get("/api/books/:id", async (req, res) => {
     try{
         const { id } = req.params;
-        const book = await Book.findById(id);
+        const book = await Book.findById(id);   
 
         if (!book) {
             return res.status(404).json({ error: "Livro não encontrado" });
