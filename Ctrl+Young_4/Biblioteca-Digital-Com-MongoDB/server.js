@@ -1,5 +1,6 @@
 const express = require("express");
 const connectDB = require("./config/config");
+const validateTitle = require("./middlewares/validadeTitle");
 const Book = require("./models/book");
 const User = require("./models/user");
 const app = express();
@@ -9,7 +10,8 @@ app.listen(3000, () => console.log("Server running on port 3000, yeah"));
 
 
 //Livros
-app.post("/api/books", async (req, res) => {
+//CREATE
+app.post("/api/books", validateTitle, async (req, res) => {
     try{
         const { title, author, year, genre } = req.body;
         const newBook = new Book({ title, author, year, genre });
@@ -20,6 +22,7 @@ app.post("/api/books", async (req, res) => {
     }
 });
 
+//READ
 app.get("/api/books", async (req, res) => {
     try{
         const books = await Book.find();
@@ -40,7 +43,37 @@ app.get("/api/books/:id", async (req, res) => {
 
         res.json(book);
     } catch (err) {
-        res.status(500).json({ error: "Erro ao buscar o livro" });
+        next(err); //O erro vai lá pro middleware de tratamento
+    }
+});
+
+//UPDATE
+app.patch("/api/books/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const updates = req.body;
+        const options = { new: true, runValidators: true };
+
+        const updatedBook = await Book.findByIdAndUpdate(id, updates, options);
+        if (!updatedBook)
+            return res.status(404).json({ error: "Livro não encontrado" });
+
+        res.json(updatedBook);
+    } catch (err) {
+        res.status(500).json({ error: "Erro ao atualizar livro" });
+    }
+});
+
+//DELETE
+app.delete("/api/books/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deletedBook = await Book.findByIdAndDelete(id);
+        if (!deletedBook)
+            return res.status(404).json({ error: "Livro não encontrado" });
+        res.json({ message: "Livro excluído com sucesso" });
+    } catch (err) {
+        res.status(500).json({ error: "Erro ao excluir livro" });
     }
 });
 
@@ -78,6 +111,11 @@ app.get("/api/users/:id", async (req, res) => {
     } catch (err) {
         res.status(500).json({ error: "Erro ao buscar o usuário" });
     }
+});
+
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ error: "Ocorreu um erro no servidor." });
 });
 
 /*app.get("/dividir", (req, res) => {
