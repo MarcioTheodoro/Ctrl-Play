@@ -1,6 +1,6 @@
 const express = require("express");
 const connectDB = require("./config/config");
-const validateTitle = require("./middlewares/validadeTitle");
+//const validateTitle = require("./middlewares/validateTitle");
 const Book = require("./models/book");
 const User = require("./models/user");
 const app = express();
@@ -11,7 +11,7 @@ app.listen(3000, () => console.log("Server running on port 3000, yeah"));
 
 //Livros
 //CREATE
-app.post("/api/books", validateTitle, async (req, res) => {
+app.post("/api/books", async (req, res) => {
     try{
         const { title, author, year, genre } = req.body;
         const newBook = new Book({ title, author, year, genre });
