@@ -1,17 +1,19 @@
 const express = require("express");
 const connectDB = require("./config/config");
 //const validateTitle = require("./middlewares/validateTitle");
-const Book = require("./models/book");
-const User = require("./models/user");
+const Book = require("./models/book"); //talvez nem precise mais
+const User = require("./models/user"); //talvez nem precise mais
+const bookRoutes = require("./routes/bookRoutes");
 const app = express();
 connectDB();
 app.use(express.json());
+app.use('/api', bookRoutes);
 app.listen(3000, () => console.log("Server running on port 3000, yeah"));
 
 
 //Livros
 //CREATE
-app.post("/api/books", async (req, res) => {
+/*app.post("/api/books", async (req, res) => {
     try{
         const { title, author, year, genre } = req.body;
         const newBook = new Book({ title, author, year, genre });
@@ -20,19 +22,19 @@ app.post("/api/books", async (req, res) => {
     } catch (err) {
         res.status(500).json({ error: "Erro ao criar livro" });
     }
-});
+});*/
 
 //READ
-app.get("/api/books", async (req, res) => {
+/*app.get("/api/books", async (req, res) => {
     try{
         const books = await Book.find();
         res.json(books);
     } catch (err) {
         res.status(500).json({ error: "Erro ao buscar livros" });
     }
-});
+});*/
 
-app.get("/api/books/:id", async (req, res) => {
+/*app.get("/api/books/:id", async (req, res) => {
     try{
         const { id } = req.params;
         const book = await Book.findById(id);   
@@ -45,10 +47,10 @@ app.get("/api/books/:id", async (req, res) => {
     } catch (err) {
         next(err); //O erro vai lá pro middleware de tratamento
     }
-});
+});*/
 
 //UPDATE
-app.patch("/api/books/:id", async (req, res) => {
+/*app.patch("/api/books/:id", async (req, res) => {
     try {
         const { id } = req.params;
         const updates = req.body;
@@ -62,7 +64,7 @@ app.patch("/api/books/:id", async (req, res) => {
     } catch (err) {
         res.status(500).json({ error: "Erro ao atualizar livro" });
     }
-});
+});*/
 
 //DELETE
 app.delete("/api/books/:id", async (req, res) => {
