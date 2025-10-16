@@ -1,10 +1,10 @@
-	if ( lives<= 0){
-		room_goto(rm_derrota);
-		//Abre a tela de derrota ao perder
-	}else if (score > 1000){
-		//abre a tela de vitória ao ganhar
-		room_goto(rm_vitoria);
-	}
+if ( lives <= 0){
+	//Abre a tela de derrota ao perder
+	room_goto(rm_derrota);
+}else if (score > 1000){
+	//abre a tela de vitória ao ganhar
+	room_goto(rm_vitoria);
+}
 
 if (keyboard_check_pressed(vk_enter))
 {

@@ -1,6 +1,6 @@
 {
   "$GMProject":"",
-  "%Name":"Asteroid Escape - 04",
+  "%Name":"Asteroid Escape - 03",
   "AudioGroups":[
     {"$GMAudioGroup":"","%Name":"audiogroup_default","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
   ],
@@ -31,17 +31,14 @@
   "MetaData":{
     "IDEVersion":"2024.8.1.171",
   },
-  "name":"Asteroid Escape - 04",
+  "name":"Asteroid Escape - 03",
   "resources":[
     {"id":{"name":"fnt_retro","path":"fonts/fnt_retro/fnt_retro.yy",},},
     {"id":{"name":"obj_asteroid","path":"objects/obj_asteroid/obj_asteroid.yy",},},
     {"id":{"name":"obj_controlador","path":"objects/obj_controlador/obj_controlador.yy",},},
     {"id":{"name":"obj_nave","path":"objects/obj_nave/obj_nave.yy",},},
     {"id":{"name":"obj_tiro","path":"objects/obj_tiro/obj_tiro.yy",},},
-    {"id":{"name":"rm_derrota","path":"rooms/rm_derrota/rm_derrota.yy",},},
-    {"id":{"name":"rm_inicio","path":"rooms/rm_inicio/rm_inicio.yy",},},
     {"id":{"name":"rm_jogo","path":"rooms/rm_jogo/rm_jogo.yy",},},
-    {"id":{"name":"rm_vitoria","path":"rooms/rm_vitoria/rm_vitoria.yy",},},
     {"id":{"name":"spr_asteroid_g","path":"sprites/spr_asteroid_g/spr_asteroid_g.yy",},},
     {"id":{"name":"spr_asteroid_m","path":"sprites/spr_asteroid_m/spr_asteroid_m.yy",},},
     {"id":{"name":"spr_asteroid_p","path":"sprites/spr_asteroid_p/spr_asteroid_p.yy",},},
@@ -51,10 +48,7 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
-    {"roomId":{"name":"rm_inicio","path":"rooms/rm_inicio/rm_inicio.yy",},},
-    {"roomId":{"name":"rm_vitoria","path":"rooms/rm_vitoria/rm_vitoria.yy",},},
     {"roomId":{"name":"rm_jogo","path":"rooms/rm_jogo/rm_jogo.yy",},},
-    {"roomId":{"name":"rm_derrota","path":"rooms/rm_derrota/rm_derrota.yy",},},
   ],
   "templateType":null,
   "TextureGroups":[

@@ -1,0 +1,21 @@
+{
+  "FolderOrderSettings":[],
+  "ResourceOrderSettings":[
+    {"name":"obj_asteroid","order":2,"path":"objects/obj_asteroid/obj_asteroid.yy",},
+    {"name":"obj_jogo","order":4,"path":"objects/obj_jogo/obj_jogo.yy",},
+    {"name":"obj_particula","order":3,"path":"objects/obj_particula/obj_particula.yy",},
+    {"name":"obj_tiro","order":1,"path":"objects/obj_tiro/obj_tiro.yy",},
+    {"name":"rm_derrota","order":2,"path":"rooms/rm_derrota/rm_derrota.yy",},
+    {"name":"rm_inicio","order":1,"path":"rooms/rm_inicio/rm_inicio.yy",},
+    {"name":"rm_vitoria","order":3,"path":"rooms/rm_vitoria/rm_vitoria.yy",},
+    {"name":"snd_kabum","order":2,"path":"sounds/snd_kabum/snd_kabum.yy",},
+    {"name":"snd_nave","order":3,"path":"sounds/snd_nave/snd_nave.yy",},
+    {"name":"snd_tiro","order":1,"path":"sounds/snd_tiro/snd_tiro.yy",},
+    {"name":"spr_asteroid_g","order":5,"path":"sprites/spr_asteroid_g/spr_asteroid_g.yy",},
+    {"name":"spr_asteroid_m","order":2,"path":"sprites/spr_asteroid_m/spr_asteroid_m.yy",},
+    {"name":"spr_asteroid_p","order":3,"path":"sprites/spr_asteroid_p/spr_asteroid_p.yy",},
+    {"name":"spr_particula","order":6,"path":"sprites/spr_particula/spr_particula.yy",},
+    {"name":"spr_portal","order":7,"path":"sprites/spr_portal/spr_portal.yy",},
+    {"name":"spr_tiro","order":4,"path":"sprites/spr_tiro/spr_tiro.yy",},
+  ],
+}
