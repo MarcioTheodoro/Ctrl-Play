@@ -4,10 +4,13 @@ const connectDB = require("./config/config");
 const Book = require("./models/book"); //talvez nem precise mais
 const User = require("./models/user"); //talvez nem precise mais
 const bookRoutes = require("./routes/bookRoutes");
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./docs/swagger.json');
 const app = express();
 connectDB();
 app.use(express.json());
 app.use('/api', bookRoutes);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.listen(3000, () => console.log("Server running on port 3000, yeah"));
 
 
@@ -67,7 +70,7 @@ app.listen(3000, () => console.log("Server running on port 3000, yeah"));
 });*/
 
 //DELETE
-app.delete("/api/books/:id", async (req, res) => {
+/*app.delete("/api/books/:id", async (req, res) => {
     try {
         const { id } = req.params;
         const deletedBook = await Book.findByIdAndDelete(id);
@@ -77,7 +80,7 @@ app.delete("/api/books/:id", async (req, res) => {
     } catch (err) {
         res.status(500).json({ error: "Erro ao excluir livro" });
     }
-});
+});*/
 
 //Usuários
 app.post("/api/users", async (req, res) => {

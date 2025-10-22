@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //rota para o download do zip
 app.get('/download', (req, res) => {
     const file = path.join(__dirname, 'public/arquivos/Space Obby.rbxl');
-    res.download(file, 'SpaceObby II.rbxl'); //"res.download" força o navegador a baixar
+    res.download(file, 'Space Obby.rbxl'); //"res.download" força o navegador a baixar
 });
 
 app.get('/download/script', (req, res) => {

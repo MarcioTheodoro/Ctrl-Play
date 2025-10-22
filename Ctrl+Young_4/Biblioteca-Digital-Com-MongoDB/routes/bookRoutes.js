@@ -7,6 +7,7 @@ router.post("/books", bookController.createBook);
 router.get("/books", bookController.readBooks);
 router.get("/books/:id", bookController.readBooksById);
 router.patch("/books/:id", bookController.updateBook);
+router.delete('/books/:id', bookController.deleteBook);
 /*router.post("/books", async (req, res) => {
     try {
         const { title, author, year, genre } = req.body;
