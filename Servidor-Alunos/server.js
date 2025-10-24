@@ -11,8 +11,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //rota para o download do zip
 app.get('/download', (req, res) => {
-    const file = path.join(__dirname, 'public/arquivos/Space Obby.rbxl');
-    res.download(file, 'Space Obby.rbxl'); //"res.download" força o navegador a baixar
+    const file = path.join(__dirname, 'public/arquivos/Biblioteca-Digital-Com-MongoDB.zip');
+    res.download(file, 'Biblioteca-Digital-Com-MongoDB.zip'); //"res.download" força o navegador a baixar
 });
 
 app.get('/download/script', (req, res) => {
