@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos</title>
+</head>
+<body>
+    <script>
+        let qtdcliques = 0;
+        function mensagemQuadrado() {
+            if (qtdcliques >= 5){
+                alert("PARA! esquisito...");
+            }
+            else {
+                alert("Você clicou no quadrado.");
+            }
+            qtdcliques += 1;
+        }
+    </script>
+    <div onclick="mensagemQuadrado()" style="background-color: green; width: 30%; height: 100px;color: azure;">
+        quadrado
+    </div>
+</body>
+</html>

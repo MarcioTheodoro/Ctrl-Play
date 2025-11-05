@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funções</title>
+</head>
+<body>
+    <script>
+        function areaDoRetangulo (largura, comprimento){
+            let area = largura * comprimento;
+            document.write("<h1>Área do retângulo: " +largura+ " x " +comprimento+ " = " +area+ "</h1>");
+        }
+        function areaDoQuadrado (lado){
+            let area = lado ** 2;
+            return area;
+        }
+        areaDoRetangulo(20, 5);
+        document.write("<h1>Área do quadrado: " +areaDoQuadrado(10)+ "</h1>");
+    </script>
+</body>
+</html>
