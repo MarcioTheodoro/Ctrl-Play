@@ -1,0 +1,15 @@
+{
+  "FolderOrderSettings":[],
+  "ResourceOrderSettings":[
+    {"name":"obj_asteroid","order":2,"path":"objects/obj_asteroid/obj_asteroid.yy",},
+    {"name":"obj_controlador","order":4,"path":"objects/obj_controlador/obj_controlador.yy",},
+    {"name":"obj_tiro","order":1,"path":"objects/obj_tiro/obj_tiro.yy",},
+    {"name":"rm_derrota","order":2,"path":"rooms/rm_derrota/rm_derrota.yy",},
+    {"name":"rm_inicio","order":1,"path":"rooms/rm_inicio/rm_inicio.yy",},
+    {"name":"rm_vitoria","order":3,"path":"rooms/rm_vitoria/rm_vitoria.yy",},
+    {"name":"spr_asteroid_g","order":5,"path":"sprites/spr_asteroid_g/spr_asteroid_g.yy",},
+    {"name":"spr_asteroid_m","order":2,"path":"sprites/spr_asteroid_m/spr_asteroid_m.yy",},
+    {"name":"spr_asteroid_p","order":3,"path":"sprites/spr_asteroid_p/spr_asteroid_p.yy",},
+    {"name":"spr_tiro","order":4,"path":"sprites/spr_tiro/spr_tiro.yy",},
+  ],
+}
