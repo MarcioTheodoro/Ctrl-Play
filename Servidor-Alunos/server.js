@@ -10,9 +10,9 @@ const PORT = 3000;
 app.use(express.static(path.join(__dirname, 'public')));
 
 //rota para o download do zip
-app.get('/download', (req, res) => {
-    const file = path.join(__dirname, 'public/arquivos/CY4/AutenticacaoJWT.zip');
-    res.download(file, 'AutenticacaoJWT.zip'); //"res.download" força o navegador a baixar
+app.get('/download', (_req, res) => {
+    const file = path.join(__dirname, 'public/arquivos/CY2/cy2-Ficha-personagem-RPG.zip');
+    res.download(file, 'cy2-Ficha-personagem-RPG.zip'); //"res.download" força o navegador a baixar
 });
 
 app.get('/download/script', (req, res) => {
