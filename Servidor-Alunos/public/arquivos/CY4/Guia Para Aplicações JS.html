@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Guia Completo: Projeto Base Node.js, Express, MongoDB</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            background-color: #fff; /* Fundo branco para impressão */
+        }
+        h1 {
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+        }
+        h2 {
+            color: #28a745;
+            margin-top: 30px;
+            border-bottom: 1px dashed #28a745;
+        }
+        h3 {
+            color: #6c757d;
+            margin-top: 20px;
+        }
+        code {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        pre {
+            background-color: #f0f3f6;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border: 1px solid #e9ecef;
+        }
+        .section-separator {
+            border-top: 3px solid #ccc;
+            margin: 20px 0;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>📚 Guia Completo: Projeto Base para Apresentação</h1>
+    <p>Projeto: **Sistema de Arrecadação Centralizada** (Node.js, Express, MongoDB) - Otimizado para Interação Local.</p>
+
+    <div class="section-separator"></div>
+
+    <h2>🛠️ Passo 0: Preparação do Ambiente e Dependências</h2>
+    <p>Execute estes comandos na pasta raiz do projeto para criar o <code>package.json</code> e instalar as bibliotecas necessárias:</p>
+    
+    <h3>1. Inicialização e Instalação:</h3>
+    <pre><code>npm init -y
+npm install express mongoose</code></pre>
+
+    <p>O <code>express</code> é o framework de servidor. O <code>mongoose</code> conecta e gerencia o MongoDB.</p>
+
+    <div class="section-separator"></div>
+
+    <h2>💻 Backend: O Servidor Central (`server.js`)</h2>
+    <p>Este código implementa as Peças 1, 2, 3 e 4. Ele inicia o servidor, conecta ao banco e define as rotas de leitura e escrita.</p>
+    
+    <pre><code>// ===================================================
+// IMPORTS E CONEXÃO (Peça 2)
+// ===================================================
+const express = require('express');
+const mongoose = require('mongoose');
+const path = require('path'); 
+
+const app = express();
+const PORT = 3000;
+const DB_URI = 'mongodb://localhost:27017/projetoArrecadacao'; 
+
+mongoose.connect(DB_URI)
+    .then(() => console.log('✅ Conectado ao MongoDB!'))
+    .catch(err => console.error('❌ Erro de conexão:', err));
+
+// Schema (Formato do dado - um único campo 'total')
+const arrecadacaoSchema = new mongoose.Schema({
+    total: { type: Number, required: true, default: 0 },
+    nome: { type: String, required: true }
+});
+const Arrecadacao = mongoose.model('Arrecadacao', arrecadacaoSchema);
+
+// Garante que o registro 'CaixaGeral' exista
+async function inicializarCaixaGeral() {
+    const caixaExiste = await Arrecadacao.findOne({ nome: 'CaixaGeral' });
+    if (!caixaExiste) {
+        await new Arrecadacao({ nome: 'CaixaGeral', total: 0 }).save();
+        console.log('📦 Registro inicial criado.');
+    }
+}
+inicializarCaixaGeral();
+
+
+// ===================================================
+// MIDDLEWARES E CONFIGURAÇÃO (Peça 1)
+// ===================================================
+
+// Habilita a leitura de JSON e de dados de formulários HTML
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Serve arquivos da pasta 'public'
+app.use(express.static(path.join(__dirname, 'public')));
+
+
+// ===================================================
+// ROTAS DO PROJETO (Peças 3 e 4)
+// ===================================================
+
+// ROTA 1: LEITURA (GET /total - Peça 3)
+app.get('/total', async (req, res) => {
+    try {
+        const caixaGeral = await Arrecadacao.findOne({ nome: 'CaixaGeral' });
+        res.json({ total: caixaGeral ? caixaGeral.total : 0 });
+    } catch (error) {
+        res.status(500).json({ erro: 'Erro ao buscar total.' });
+    }
+});
+
+// ROTA 2: ESCRITA (POST /depositar - Peça 4)
+app.post('/depositar', async (req, res) => {
+    try {
+        const valorDeposito = parseFloat(req.body.valor); 
+
+        if (typeof valorDeposito !== 'number' || valorDeposito <= 0 || isNaN(valorDeposito)) {
+            return res.status(400).send('Valor inválido.');
+        }
+
+        // Usa o operador atômico $inc para garantir que a soma seja segura
+        await Arrecadacao.findOneAndUpdate(
+            { nome: 'CaixaGeral' },
+            { $inc: { total: valorDeposito } },
+            { new: true, upsert: true }
+        );
+
+        // Chave da simplicidade: Redireciona para o formulário após o POST (refresh)
+        res.redirect('/depositar.html?status=sucesso'); 
+
+    } catch (error) {
+        res.status(500).send('Erro interno ao depositar.');
+    }
+});
+
+
+// ===================================================
+// INICIALIZAÇÃO
+// ===================================================
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Servidor rodando em http://localhost:${PORT}`);
+});</code></pre>
+
+    <div class="section-separator"></div>
+
+    <h2>🖥️ Frontend: A Interface (Pasta `public`)</h2>
+    <p>Crie uma pasta chamada **<code>public</code>** na raiz do projeto, e dentro dela, os arquivos HTML e o CSS.</p>
+
+    <h3>1. Tela do Aluno (Visualização): `public/display.html`</h3>
+    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-br"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Tela de Apresentação&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container display-container"&gt;
+        &lt;h1&gt;🌟 Total Arrecadado ao Vivo&lt;/h1&gt;
+        &lt;div class="card"&gt;
+            &lt;h2&gt;VALOR ATUAL:&lt;/h2&gt;
+            &lt;div id="total-arrecadado" class="total-value"&gt;Buscando...&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;p class="refresh-info"&gt;Atualização automática a cada 5 segundos.&lt;/p&gt;
+    &lt;/div&gt;
+    
+    &lt;script&gt;
+        // Função para ligar o Back ao Front (GET)
+        const totalDisplay = document.getElementById('total-arrecadado');
+        const BASE_URL = window.location.origin;
+
+        async function carregarTotal() {
+            try {
+                // response: o pacote HTTP; data: o objeto JS utilizável
+                const response = await fetch(`${BASE_URL}/total`); 
+                const data = await response.json();
+                
+                if (response.ok) {
+                    totalDisplay.textContent = `R$ ${data.total.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`; 
+                }
+            } catch (error) {
+                totalDisplay.textContent = 'Erro de conexão.';
+            }
+        }
+
+        carregarTotal();
+        // Auto-Refresh a cada 5 segundos
+        setInterval(carregarTotal, 5000); 
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <h3>2. Tela do Interator (Depósito): `public/depositar.html`</h3>
+    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-br"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Interface de Depósito&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container form-container"&gt;
+        &lt;h1&gt;➡️ Faça sua Contribuição&lt;/h1&gt;
+        
+        &lt;!-- Usa formulário HTML nativo para o POST --&gt;
+        &lt;form action="/depositar" method="POST"&gt;
+            &lt;label for="valor"&gt;Quanto você quer depositar?&lt;/label&gt;
+            &lt;input type="number" name="valor" id="valor" required min="1" value="10"&gt;
+            &lt;button type="submit"&gt;DEPOSITAR&lt;/button&gt;
+        &lt;/form&gt;
+        
+        &lt;p class="refresh-info"&gt;A tela de apresentação do aluno atualizará em instantes!&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;script&gt;
+        // Alerta de sucesso após o redirecionamento do servidor
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('status') === 'sucesso') {
+            alert("Depósito realizado com sucesso!");
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <h3>3. Estilos Base: `public/style.css` (Para impressão)</h3>
+    <p>Use o CSS para estilizar e destacar os valores.</p>
+    <pre><code>body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    padding: 20px;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+}
+.container {
+    background-color: #f8f8f8;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+}
+h1 {
+    color: #007bff;
+}
+.total-value {
+    font-size: 3.5em;
+    color: #28a745;
+    font-weight: bold;
+    margin: 15px 0;
+}
+input[type="number"] {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1.1em;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+button {
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+.refresh-info {
+    font-size: 0.9em;
+    color: #888;
+    margin-top: 20px;
+}
+/* Estilo para impressão */
+@media print {
+    body {
+        box-shadow: none;
+    }
+}</code></pre>
+
+</body>
+</html>

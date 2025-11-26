@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Tela de Apresentação (Aluno)</title>
+</head>
+<body>
+    <h1>🌟 Arrecadação ao Vivo</h1>
+    <p>O total está sendo atualizado automaticamente a cada 5 segundos.</p>
+    
+    <div style="padding: 20px; background-color: #f0f0f0;">
+        <h2>VALOR ATUAL: <span id="total-arrecadado" style="color: green; font-size: 2em;">Buscando...</span></h2>
+    </div>
+    
+    <script>
+        const totalDisplay = document.getElementById('total-arrecadado');
+        const BASE_URL = window.location.origin;
+
+        async function carregarTotal() {
+            try {
+                const response = await fetch(`${BASE_URL}/total`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    totalDisplay.textContent = `R$ ${data.total.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`; 
+                } else {
+                    totalDisplay.textContent = 'Erro ao buscar dados.';
+                }
+            } catch (error) {
+                totalDisplay.textContent = 'Erro de conexão.';
+            }
+        }
+
+        carregarTotal();
+        setInterval(carregarTotal, 5000); 
+
+    </script>
+</body>
+</html>
