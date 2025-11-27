@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pontos-Chave: JavaScript para o Jogo de Pescaria</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+        h1 {
+            color: #004c99;
+            border-bottom: 3px solid #ffcc00;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        h2 {
+            color: #4CAF50;
+            margin-top: 30px;
+            border-left: 5px solid #4CAF50;
+            padding-left: 10px;
+            background-color: #e8f5e9;
+            padding: 8px 10px;
+            border-radius: 4px;
+        }
+        h3 {
+            color: #007bff;
+            margin-top: 20px;
+        }
+        .section {
+            margin-bottom: 40px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            color: #c7254e;
+            font-weight: bold;
+        }
+        pre {
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        pre code {
+            all: unset; /* Reseta o estilo 'code' para o bloco 'pre' */
+            font-size: 0.9em;
+            line-height: 1.4;
+            color: #f8f8f2;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        li strong {
+            color: #555;
+        }
+        /* Estilos específicos para impressão (Ctrl+P) */
+        @media print {
+            body {
+                max-width: 100%;
+                font-size: 11pt;
+            }
+            h1, h2 {
+                color: black !important;
+                border-color: #999 !important;
+            }
+            .section {
+                border: none;
+                box-shadow: none;
+                background-color: transparent;
+                padding: 0;
+            }
+            pre {
+                background-color: #eee !important;
+                color: #333 !important;
+                border: 1px solid #ccc;
+            }
+            code {
+                color: #333 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🚀 Pontos-Chave: O JavaScript do Jogo de Pescaria</h1>
+    <p>Este material destaca os conceitos essenciais do JavaScript (`script.js`) utilizados para dar vida e lógica ao projeto de TCC. Ao dominar estes 5 pilares, você será capaz de explicar a funcionalidade completa do seu jogo.</p>
+    
+    <hr>
+
+    <div class="section">
+        <h2>1. Manipulação do DOM (Document Object Model)</h2>
+        <p>A primeira coisa que o JS faz é "encontrar" e "interagir" com os elementos HTML (o DOM), como o peixe, o placar e o timer.</p>
+        
+        <h3>Código Exemplo:</h3>
+        <pre><code>
+const peixe = document.getElementById('peixe');
+const placar = document.getElementById('placar');
+const areaJogo = document.getElementById('area-jogo');
+        </code></pre>
+        
+        <ul>
+            <li><strong>document.getElementById('...')</strong>: É o método que **liga** seu código JavaScript aos elementos que possuem um ID específico no seu HTML.</li>
+            <li><strong>const peixe</strong>: Cria uma **variável** para guardar esse elemento, permitindo que o JS mude sua posição ou o escute quando for clicado.</li>
+        </ul>
+    </div>
+    
+    <hr>
+
+    <div class="section">
+        <h2>2. Event Listeners (Escutando o Usuário)</h2>
+        <p>Esta função é a alma da interatividade. Ela diz ao navegador: "Se o usuário fizer algo (um evento) neste elemento, execute esta função".</p>
+        
+        <h3>Código Exemplo:</h3>
+        <pre><code>
+peixe.addEventListener('click', (event) => {
+    // A função anônima (=>) é executada somente ao CLICAR no peixe.
+    pontos++;
+    placar.textContent = `Pontos: ${pontos}`;
+    iniciarCicloPeixe(); 
+});
+        </code></pre>
+        
+        <ul>
+            <li><strong>addEventListener('click', ...)</strong>: O JS "escuta" o elemento <code>peixe</code>. O evento a ser escutado é o <strong>'click'</strong>.</li>
+            <li><strong>Lógica Interna</strong>: Ao ser clicado, a função incrementa a variável <code>pontos</code> e usa a propriedade <strong><code>.textContent</code></strong> para atualizar o placar na tela.</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div class="section">
+        <h2>3. Aleatoriedade e Manipulação de Estilo (O Movimento)</h2>
+        <p>Para fazer o peixe aparecer em locais aleatórios, usamos funções matemáticas e mudamos as propriedades CSS diretamente pelo JS.</p>
+        
+        <h3>Código Exemplo:</h3>
+        <pre><code>
+function posicaoAleatoria() {
+    const x = Math.floor(Math.random() * maxX);
+    const y = Math.floor(Math.random() * maxY);
+
+    peixe.style.left = `${x}px`;
+    peixe.style.top = `${y}px`;
+    peixe.style.display = 'block'; 
+}
+        </code></pre>
+        
+        <ul>
+            <li><strong>Math.random()</strong>: Gera um número decimal aleatório entre 0 e 1.</li>
+            <li><strong>Math.floor()</strong>: Arredonda o número para baixo, garantindo que a coordenada seja um número inteiro (necessário para pixels).</li>
+            <li><strong>peixe.style.left / .top</strong>: Altera as propriedades CSS <code>left</code> e <code>top</code> do elemento (que deve ter <code>position: absolute;</code> no CSS) para reposicionar o peixe na tela.</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div class="section">
+        <h2>4. Funções de Tempo (Timer e Aparição)</h2>
+        <p>O JavaScript não executa código de forma contínua, mas sim com base em eventos. Para criar a sensação de tempo e movimento, usamos funções temporais.</p>
+        
+        <h3>Código Exemplo:</h3>
+        <pre><code>
+// Para a contagem regressiva (tempo que roda constantemente)
+contagemRegressivaId = setInterval(atualizarTimer, 1000); 
+
+// Para a aparição temporária do peixe (tempo que roda uma vez)
+setTimeout(() => {
+    // Lógica para aparecer
+}, tempoEspera); 
+        </code></pre>
+        
+        <ul>
+            <li><strong>setInterval(funcao, 1000)</strong>: Executa a <code>funcao</code> repetidamente a cada 1000 milissegundos (1 segundo). Usado para a contagem regressiva.</li>
+            <li><strong>clearInterval(id)</strong>: Essencial para **parar** o <code>setInterval</code> quando o jogo termina, evitando que o timer continue rodando.</li>
+            <li><strong>setTimeout(funcao, tempo)</strong>: Executa a <code>funcao</code> **apenas uma vez** após o <code>tempo</code> (em ms). Usado para controlar por quanto tempo o peixe fica visível ou quanto tempo o jogo espera para o próximo aparecer.</li>
+        </ul>
+    </div>
+    
+    <hr>
+
+    <div class="section">
+        <h2>5. Estrutura e Controle de Fluxo (Fim de Jogo)</h2>
+        <p>O controle de fluxo garante que o jogo saiba quando parar e qual tela mostrar. As variáveis de controle são fundamentais.</p>
+        
+        <h3>Código Exemplo:</h3>
+        <pre><code>
+// Variáveis de Controle
+let jogoAtivo = true;
+const META_PONTOS = 15;
+
+function finalizarJogo(venceu) {
+    jogoAtivo = false; // Desliga a lógica de jogo
+
+    if (venceu) {
+        window.location.href = "vitoria.html"; // Redirecionamento
+    } else {
+        window.location.href = "derrota.html"; // Redirecionamento
+    }
+}
+        </code></pre>
+        
+        <ul>
+            <li><strong>Variável <code>jogoAtivo</code></strong>: Usada em todos os eventos (clique, aparição) para verificar se a lógica deve continuar rodando. Se for <code>false</code>, o jogo para de responder.</li>
+            <li><strong>Instrução <code>if/else</code></strong>: A estrutura de decisão principal. Verifica se a condição <code>venceu</code> é verdadeira ou falsa para determinar o redirecionamento.</li>
+            <li><strong>window.location.href</strong>: O método mais simples para o navegador carregar uma nova página HTML (`vitoria.html` ou `derrota.html`), finalizando o TCC.</li>
+        </ul>
+    </div>
+
+</body>
+</html>
