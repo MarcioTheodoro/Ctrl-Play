@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INNER HTML</title>
+</head>
+<body>
+    <script>
+        function loreGuerreiro() {
+            document.getElementById("lore").innerHTML = "Era uma vez um nobre guerreiro da Programação (que não usava PHP)...";
+        }
+        function loreMago() {
+            document.getElementById("lore").innerHTML = "Era uma vez um poderoso mago da robótica (que tinha medo de C++)...";
+        }
+    </script>
+    <h2>Escolha o personagem da História:</h2>
+    <img onclick="loreGuerreiro()" src="https://orbedosdragoes.com/wp-content/uploads/2017/06/DD5-Guerreiro_1.jpg" style="width: 22%;">
+    <img onclick="loreMago()" src="https://www.clashroyaledicas.com/wp-content/uploads/2016/02/mago-maximo-clash-royale-star-wizard.png" style="width: 28%;">
+    <p id="lore"></p>
+</body>
+</html>

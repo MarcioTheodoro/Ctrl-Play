@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="shortcut icon" href="voleibol.png" type="image/x-icon">
+    <style>
+        #interesse{
+            opacity: 70%;
+        }
+        input:not(.not), select, textarea {
+            padding: 3px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 2px solid darkgray;
+            border-radius: 4px;
+        }
+        textarea {
+            resize: none;
+        }
+        input[type=submit], input[type=reset] {
+            padding: 16px 32px;
+            margin-bottom: 50px;
+        }
+    </style>
+    <title>Notícias voleibol</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="Página de Notícias(Marcin).html#noticias">Notícias</a></li>
+            <li><a href="Página de Notícias(Marcin).html#braxeua">Brasil vence EUA</a></li>
+            <li><a href="Página de Notícias(Marcin).html#lesao">Julia Kudiess lesionada</a></li>
+            <li><a href="Página de Notícias(Marcin).html#perda">Brasil perde para Cuba</a></li>
+            <li><a href="Página de Notícias(Marcin).html#jogos">Próximos jogos</a></li>
+            <li><a href="Cadastro.html">Fique por Dentro!</a></li>
+        </ul>
+    </nav>
+    <section>
+        <h2>Crie sua conta!</h2>
+        <h4>Preencha alguns dados para poder acompanhar em primeira mão o que anda acontecendo no meio espotivo do vôlei:</h4>
+        <form action="" method="POST">
+            <label for="email">Email: </label>
+            <input type="email" id="email" name="email" value="" autofocus><br><br>
+            <label for="usuario">Usuário: </label>
+            <input type="text" id="usuario" name="usuario" value="" maxlength="30" required>*<br><br>
+            <label for="senha">Senha: </label>
+            <input type="password" id="senha" name="senha" value="" required>*<br><br>
+            <label for="conf_senha">Confirme a senha: </label>
+            <input type="password" id="senha" name="senha" value="" required>*<br><br>
+            <label for="pnome">Nome: </label>
+            <input type="text" id="pnome" name="pnome" value=""><br><br>
+            <label for="sobrenome">Sobrenome: </label>
+            <input type="text" id="sobrenome" name="sobrenome" value=""><br><br>
+            <label for="interesse">Esporte de interesse: </label>
+            <input type="text" id="interesse" name="interesse" value="Vôlei" readonly><br><br>
+            <label for="dtnasc">Data de nascimento: </label>
+            <input type="date" id="dt_nasc" name="dt_nasc" value="" required>*<br><br>
+            <label>
+                Sexo: 
+                <select name="sexo">
+                    <option value="" selected>Selecione</option>
+                    <option value="feminino">Feminino</option>
+                    <option value="masculino">Masculino</option>
+                </select>
+            </label><br><br>
+            <fieldset>
+                <legend>Quais tópicos são do seu interesse?</legend>
+                <input type="checkbox" id="topico1" name="topico" value="times">
+                <label for="vehicle1">Times</label><br>
+                <input type="checkbox" id="topico2" name="topico" value="lesoes">
+                <label for="vehicle2">Lesões</label><br>
+                <input type="checkbox" id="topico3" name="topico" value="jogos">
+                <label for="vehicle3">Jogos</label><br>
+                <input type="checkbox" id="topico4" name="topico" value="atletas">
+                <label for="vehicle3">Atletas</label>
+            </fieldset><br><br>
+        <label for="feedback">Diga o que espera da plataforma: </label><br>
+        <textarea id="feedback" name="feedback" rows="10" cols="40" placeholder="Diga-nos o que espera ver por aqui com suas palavras"></textarea><br><br>
+        <label>
+            Envie uma foto (para pefil): <input class="not" type="file" name="foto" accept="image/jpeg, image/png">
+        </label><br><br>
+        <label>Concordo com os <a href="https://www.jusbrasil.com.br/artigos/termo-de-direito-de-uso-de-imagem-quem-para-que-e-por-que/1926339353">termos e condições</a></label>
+        <input type="radio" id="sim" name="ciencia" value="sim" required>
+        <label for="sim">Sim</label>
+        <input type="radio" id="nao" name="ciencia" value="nao">
+        <label for="nao">Não</label>*<br><br>
+        <input type="submit" value="Enviar">
+        <input type="reset" value="Limpar">
+        </form>
+    </section>
+</body>
+</html>

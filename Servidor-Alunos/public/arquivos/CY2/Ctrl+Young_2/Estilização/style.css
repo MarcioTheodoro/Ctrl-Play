@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    color: orange;
+}
+
+#vermelho {
+    color: red;
+}
+
+.verde {
+    color: green;
+}
+
+article h2 {
+    color: blue;
+}
+
+img:hover {
+    width: 25%;
+}
+
+img[src = "https://www.umdoisesportes.com.br/thumbor/Qqi-l52sUBgWqkiFfu42WcSBRrI=/1280x720/smart/filters:format(webp)/https://www.umdoisesportes.com.br//media/umdoisesportes/2025/09/30111519/Montagens-GERAIS-36.jpg"]{
+    border-radius: 50%;
+}
+
+#expressao-regular {
+    display: flex;
+    justify-content: center;
+}
+
+#expressao-regular img {
+    width: 40%;
+    padding: 0.5%;
+}

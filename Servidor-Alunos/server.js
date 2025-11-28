@@ -11,8 +11,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //rota para o download do zip
 app.get('/download', (_req, res) => {
-    const file = path.join(__dirname, 'public/arquivos/CY4/AutenticacaoJWT.zip');
-    res.download(file, 'AutenticacaoJWT.zip'); //"res.download" força o navegador a baixar
+    const file = path.join(__dirname, 'public/arquivos/CY2/Ctrl+Young_2.zip');
+    res.download(file, 'Ctrl+Young_2.zip'); //"res.download" força o navegador a baixar
 });
 
 app.get('/download/script', (req, res) => {
