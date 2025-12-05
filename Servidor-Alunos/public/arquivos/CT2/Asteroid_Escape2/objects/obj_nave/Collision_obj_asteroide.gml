@@ -1,5 +1,6 @@
 if (lives <= 0){
 	 //explosão de partículas
+	 d = 1;
 	instance_destroy();
 	//destruição da nave
 }

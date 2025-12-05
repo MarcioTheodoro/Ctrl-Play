@@ -8,7 +8,8 @@ if keyboard_check(ord("W")){
 	//interrompe o movimento da nave
 }
 if keyboard_check(ord("A")){
-	direction += 3;
+	direction = -180;
+	speed = 5;
 	//gira a nave no sentido anti-horário
 } else if keyboard_check(ord("D")){
 	direction -= 3;

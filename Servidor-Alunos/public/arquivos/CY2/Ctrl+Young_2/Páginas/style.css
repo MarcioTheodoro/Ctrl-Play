@@ -1,4 +1,16 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 header {
     background-color: blueviolet;
     color: white;
+}
+
+h1 {
+    border-bottom: solid black 1px;
+}
+
+#algo {
+    display: flex;
 }
