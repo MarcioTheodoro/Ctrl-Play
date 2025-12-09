@@ -1,0 +1,15 @@
+section {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+    background-color: rgb(194, 111, 194);
+    border: solid rgb(234, 212, 138) 4px;
+}
+
+img {
+    width: 150px;
+}
+
+p {
+    text-align: justify;
+}

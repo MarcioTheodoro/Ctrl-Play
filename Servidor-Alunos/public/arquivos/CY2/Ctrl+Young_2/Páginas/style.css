@@ -11,6 +11,10 @@ h1 {
     border-bottom: solid black 1px;
 }
 
+h1:hover {
+    font-size: large;
+}
+
 #algo {
     display: flex;
 }
